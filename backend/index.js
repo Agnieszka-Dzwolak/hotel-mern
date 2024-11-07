@@ -11,7 +11,7 @@ import logger from './middleware/logger.js';
 
 // import routes
 import userRoutes from './routes/user.js';
-import bookRoutes from './routes/book.js';
+import hotelRoutes from './routes/hotel.js';
 
 // load environment variables
 dotenv.config();
@@ -37,11 +37,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // use middlewares
-app.use(logger);
+if (process.env.NODE_ENV === 'development') {
+    app.use(logger);
+}
 
 // use routes
 app.use('/api', userRoutes);
-app.use('/api', bookRoutes);
+app.use('/api', hotelRoutes);
 
 // handle 404
 app.use('*', (req, res) => {
