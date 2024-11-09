@@ -33,7 +33,10 @@ const app = express();
 // cors allow the server to accept request from different origin
 app.use(
     cors({
-        origin: 'http://localhost:5173',
+        origin: [
+            'http://localhost:5173',
+            'https://hotel-mern-75tt.onrender.com/'
+        ],
         credentials: true
     })
 );
